@@ -14,6 +14,7 @@ class Planta {
 	
 	method cuantoEspacioOcupa()
 	method esParcelaIdeal(unaParcela)
+	method buenaAsociacion(unaParcela){return (self.esParcelaEcologica(unaParcela) or self.esParcelaIndustrial(unaParcela))}
 	method esParcelaEcologica(unaParcela){return (not unaParcela.tieneComplicaciones() and self.esParcelaIdeal(unaParcela))}
 	method esParcelaIndustrial(unaParcela){return unaParcela.cantidadDePlantas() <=2 and self.esFuerte()}
 	

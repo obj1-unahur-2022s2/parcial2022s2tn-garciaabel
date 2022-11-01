@@ -33,7 +33,7 @@ class Parcela {
  }
  method ningunaSuperalos1coma5(){return plantas.all({p => p.altura()<1.5})}
  method cantidadDePlantas(){return (plantas.size())}
- method porcentajeDeBuenaAsociacion(){return (plantas.size())}
+ method porcentajeDeBuenaAsociacion(){return (plantas.count({p=>p.buenaAsociacion()})) / self.cantidadDePlantas() * 100
  
  
  	
