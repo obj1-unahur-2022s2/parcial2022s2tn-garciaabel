@@ -1,5 +1,10 @@
+/*
+ * El promedioDePlantasPorParcela no esta bien. ForEach es un método de indicacion que no retoran valores y lo estas usando para dividir con otro valor
+ */
+
 import parcelas.*
 import plantas.*
+
 
 /* Al Instituto Nacional de Tecnología Agropecuaria (INTA), le interesa realizar una serie de estadísticas sobre todas las parcelas del país. 
   Para ello, agregaremos al modelo un objeto único que represente al INTA, en el cual mantendremos una colección de parcelas.
@@ -14,8 +19,7 @@ object inta {
 	
 	method cantidadDeParcelas(){return parcelas.size()}
 	method promedioDePlantasPorParcela(){
-		return (parcelas.sum({
-			parcelas.forEach({p=>p.cantidadDePlantas()})}) / self.cantidadDeParcelas()) 
+		return (parcelas.sum({p=>p.cantidadDePlantas()}) / self.cantidadDeParcelas()) 
 	}
 	
 	method parcelaMasAutoSustentable(){

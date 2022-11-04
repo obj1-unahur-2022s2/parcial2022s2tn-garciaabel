@@ -1,3 +1,9 @@
+/*
+ * El codigo de Parcelas no compila porque tiene el error mismatched input '<EOF>' expecting '}', es decir te faltaba cerrar una llave	
+ * Recordar que lanzar una excepción corta la ejecución del método. En ```plantarUnaPlanta(unaPlata)``` fijate como cambié el código para que solo quede el if(){} solo sin else{}
+ * Lo esperado era que ParcelaEcologicas y ParcelasIndustriles fueras subClases heredadas de Parcela. Que Parela tenga el método abstracto seAsociaBien() y las subClases lo sobreescriban.
+ * La solucion que planteaste de hacer el método buenaAsociacion en plantas no es correcto, como tampoco es correcto tener los métodos esParcelaEcologica y esParcelaIndustrial  
+ */
 import plantas.*
 
 class Parcela {
@@ -28,13 +34,24 @@ class Parcela {
  method plantarUnaPlanta (unaPlanta){
  	if (plantas.size() == self.cantidadMaximaDePlantasQueTolera() or self.hsDeSol() > unaPlanta.cuantasHsDeSolTolera() + 2){
 		self.error("No se puede plantar")
- 		}
- 		else {plantas.add(unaPlanta)}
+ 	}
+ 	plantas.add(unaPlanta)
  }
  method ningunaSuperalos1coma5(){return plantas.all({p => p.altura()<1.5})}
- method cantidadDePlantas(){return (plantas.size())}
- method porcentajeDeBuenaAsociacion(){return (plantas.count({p=>p.buenaAsociacion()})) / self.cantidadDePlantas() * 100
- 
- 
- 	
+ method cantidadDePlantas(){return plantas.size()}
+ method porcentajeDeBuenaAsociacion(){return (plantas.count({p=>p.buenaAsociacion()})) / self.cantidadDePlantas() * 100}
+ method seAsociaBien(planta)
+}
+
+class ParcelaEcologica inherits Parcela {
+	
+	override method seAsociaBien(planta){
+		return !self.tieneComplicaciones() && planta.esParcelaIdeal(self)
+	}
+}
+
+class ParcelaIndustrial inherits Parcela {
+	override method seAsociaBien(planta){
+		return plantas.size() <= 2 && planta.esFuerte()
+	}
 }
