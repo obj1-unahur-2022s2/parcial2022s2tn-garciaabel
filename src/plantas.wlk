@@ -1,3 +1,8 @@
+/*
+ * Recordar que podes usar el between
+ * En el método daNuevasSemillas() de Soja te faltaron los paréntesis para agrupar correctamente las condiciones.  
+ * La condicion de ```bool and (bool or bool)``` es distinto que ``` bool and bool or bool```  
+ */
 import parcelas.*
 
 class Planta {
@@ -45,11 +50,11 @@ class Soja inherits Planta{
 
 	override method cuantasHsDeSolTolera() { 
 		if (altura < 0.5) return 6
-		else if (altura > 0.5 and altura < 1) return 7
+		else if (altura.between(0.5,1)) return 7
 		else return 9
 	}
 	// esFuerte() esta en la superClase
-	override method daNuevasSemillas() {return super() or anioDeObtencion > 2007 and altura > 1}
+	override method daNuevasSemillas() {return super() or (anioDeObtencion > 2007 and altura > 1)}
 	override method cuantoEspacioOcupa() = altura / 2
 	override method esParcelaIdeal(unaParcela){ return unaParcela.hsDeSol() == self.cuantasHsDeSolTolera()}
 }
